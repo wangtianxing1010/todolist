@@ -1,7 +1,7 @@
 from flask import jsonify
 from werkzeug.http import HTTP_STATUS_CODES
 
-from application.apis.v1 import api_v1
+from app.apis.v1 import api_v1
 
 
 def api_abort(code, message=None, **kwargs):

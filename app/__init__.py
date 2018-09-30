@@ -7,20 +7,20 @@ from flask_babel import _
 from flask_login import current_user
 from flask_migrate import upgrade
 
-from application.extensions import csrf, db, login_manager, babel, migrate
-from application.blueprints.auth import auth_bp
-from application.blueprints.home import home_bp
-from application.blueprints.todo import todo_bp
-from application.models import User, Item
-from application.config import config
-from application.apis.v1 import api_v1
+from app.extensions import csrf, db, login_manager, babel, migrate
+from app.blueprints.auth import auth_bp
+from app.blueprints.home import home_bp
+from app.blueprints.todo import todo_bp
+from app.models import User, Item
+from app.config import config
+from app.apis.v1 import api_v1
 
 
 def create_app(config_name=None):
     if config_name is None:
         config_name = os.getenv("FLASK_CONFIG", "development")
 
-    app = Flask("application")
+    app = Flask("app")
     app.config.from_object(config[config_name])
 
     register_extensions(app)
@@ -46,7 +46,7 @@ def register_blueprints(app):
     app.register_blueprint(todo_bp)
     app.register_blueprint(home_bp)
     app.register_blueprint(api_v1, url_prefix='/api/v1')
-    # application.register_blueprint(api_v1, url_prefix='/v1', subdomain='api')  # enable subdomain support
+    # app.register_blueprint(api_v1, url_prefix='/v1', subdomain='api')  # enable subdomain support
 
 
 def register_template_context(app):
@@ -129,7 +129,7 @@ def register_commands(app):
         """Initialize a new language"""
         if os.system("pybabel extract -F babel.cfg -k _l -o messages.pot ."):
             raise RuntimeError("extract command failed")
-        if os.system("pybabel init -i messages.pot -d application/translations -l " + locale):
+        if os.system("pybabel init -i messages.pot -d app/translations -l " + locale):
             raise RuntimeError("init command failed")
         os.remove("messages.pot")
 
@@ -138,12 +138,12 @@ def register_commands(app):
         """update all languages"""
         if os.system("pybabel extract -F babel.cfg -k _l -o messages.pot ."):
             raise RuntimeError("extract command failed")
-        if os.system("pybabel update -i messages.pot -d application/translations"):
+        if os.system("pybabel update -i messages.pot -d app/translations"):
             raise RuntimeError('update command failed')
         os.remove("messages.pot")
 
     @translate.command()
     def compile():
         """compile all languages"""
-        if os.system("pybabel compile -d application/translation"):
+        if os.system("pybabel compile -d app/translation"):
             raise RuntimeError("compile command failed")

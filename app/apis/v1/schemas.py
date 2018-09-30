@@ -1,6 +1,6 @@
 from flask import url_for
 
-from application.models import Item
+from app.models import Item
 
 
 def user_schema(user):

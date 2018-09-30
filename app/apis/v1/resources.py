@@ -1,12 +1,12 @@
 from flask import jsonify, request, current_app, url_for, g
 from flask.views import MethodView
 
-from application.apis.v1 import api_v1
-from application.apis.v1.errors import ValidationError, api_abort
-from application.apis.v1.schemas import user_schema, item_schema, items_schema
-from application.extensions import db
-from application.models import User, Item
-from application.apis.v1.auth import generate_token, auth_required
+from app.apis.v1 import api_v1
+from app.apis.v1.errors import ValidationError, api_abort
+from app.apis.v1.schemas import user_schema, item_schema, items_schema
+from app.extensions import db
+from app.models import User, Item
+from app.apis.v1.auth import generate_token, auth_required
 
 
 def get_item_body():

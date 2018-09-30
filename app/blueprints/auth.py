@@ -3,8 +3,8 @@ from flask import render_template, request, redirect, url_for, Blueprint, jsonif
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_babel import _
 
-from application.extensions import db
-from application.models import User, Item
+from app.extensions import db
+from app.models import User, Item
 
 auth_bp = Blueprint("auth", __name__)
 fake = Faker()
@@ -13,7 +13,7 @@ fake = Faker()
 @auth_bp.route("/login", methods=["POST","GET"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("todo.application"))
+        return redirect(url_for("todo.app"))
 
     if request.method == "POST":
         data = request.get_json()

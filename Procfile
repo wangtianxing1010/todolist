@@ -1,1 +1,1 @@
-web: gunicorn "application:create_app(config_name=None)"
+web: gunicorn "todolist.app:create_app(config_name=None)"

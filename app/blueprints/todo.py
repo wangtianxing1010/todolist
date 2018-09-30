@@ -2,13 +2,13 @@ from flask import render_template, request, Blueprint, jsonify
 from flask_login import current_user, login_required
 from flask_babel import _
 
-from application.extensions import db
-from application.models import Item
+from app.extensions import db
+from app.models import Item
 
 todo_bp = Blueprint("todo", __name__)
 
 
-@todo_bp.route("/application")
+@todo_bp.route("/app")
 @login_required
 def app():
     all_count = Item.query.with_parent(current_user).count()
