@@ -105,8 +105,10 @@
 
  # Development
  *.db
- .idea
- .idea/
+.idea
+.idea/
 
 .DS_store
 */.DS_store
+
+migrations/
