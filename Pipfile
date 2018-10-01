@@ -1,0 +1,20 @@
+[[source]]
+ url = "https://pypi.python.org/simple"
+ verify_ssl = true
+ name = "pypi"
+ [dev-packages]
+ watchdog = "*"
+ httpie = "*"
+ selenium = "*"
+ [packages]
+ flask-babel = "*"
+ flask-login = "*"
+ flask-sqlalchemy = "*"
+ flask-wtf = "*"
+ python-dotenv = "*"
+ flask-cors = "*"
+ flask = "*"
+ faker = "*"
+ "psycopg2" = "*"
+ gunicorn = "*"
+ flask-migrate = "*"

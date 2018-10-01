@@ -1,0 +1,1 @@
+web: gunicorn "app:create_app(config_name=None)"
